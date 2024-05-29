@@ -1,10 +1,8 @@
 package room;
 
-import customer.Customer;
 import room.enums.CommonFeature;
 import room.enums.Status;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
@@ -12,14 +10,13 @@ public class Room {
     private int capacity;
     private int basePrice;
     private Status status;
-    private List<Customer>  guests;
     private final List<CommonFeature> commonFeatures = CommonFeature.COMMON_FEATURES;
+
 
     public Room(int capacity, int basePrice) {
         this.capacity = capacity;
         this.basePrice = CommonFeature.calculateTotalPrice(commonFeatures);
         this.status = Status.EMPTY;
-        this.guests = new ArrayList<>(capacity);
     }
 
     public int getId() {
@@ -50,15 +47,8 @@ public class Room {
         this.status = status;
     }
 
-    public void setGuests(List<Customer> guests) {
-        this.guests = guests;
-    }
-
-    public List<Customer> getGuests() {
-        return guests;
-    }
-
     public Status getStatus() {
         return status;
     }
+
 }
