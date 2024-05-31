@@ -1,6 +1,6 @@
 package room;
 
-import customer.Service;
+import reservation.Service;
 import room.enums.CommonFeature;
 import room.enums.Status;
 import room.enums.Type;
