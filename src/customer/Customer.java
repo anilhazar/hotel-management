@@ -1,8 +1,8 @@
 package customer;
-import common.Person;
+import common.User;
 import common.Role;
 
-public class Customer extends Person {
+public class Customer extends User {
 
 
     public Customer(String name, String email, int age, Role role) {
