@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-    private int id;
+    private Long id;
     private int capacity;
     private int basePrice;
     private Status status;
@@ -27,9 +27,19 @@ public class Room {
 
     }
 
-    public int getId() {
+    public Room(Long id, int capacity, int basePrice, Status status, Type type) {
+        this.id = id;
+        this.capacity = capacity;
+        this.basePrice = basePrice;
+        this.status = status;
+        this.type = type;
+    }
+
+    public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {this.id = id;}
 
     public int getCapacity() {
         return capacity;
@@ -74,4 +84,6 @@ public class Room {
     public void setServices(List<Service> services) {
         this.services = services;
     }
+
+
 }

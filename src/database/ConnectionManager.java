@@ -1,10 +1,10 @@
-package util;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-final class ConnectionManager {
+public class ConnectionManager {
     private static Connection connection = null;
     private static final String USERNAME = "root";
     private static final String PASSWORD = "password";
