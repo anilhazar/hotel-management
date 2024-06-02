@@ -9,25 +9,21 @@ public class Reservation {
     private Long roomId;
     private Date checkInDate;
     private Date checkOutDate;
-    private double extendedPrice;
+    private Double extendedPrice;
     private List<Service> services;
 
-    public Reservation(Long customerId, Long roomId, Date checkInDate, Date checkOutDate, List<Service> services) {
+    public Reservation(Long customerId, Long roomId, Date checkInDate, Date checkOutDate, double services) {
         this.customerId = customerId;
         this.roomId = roomId;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
-        this.services = services;
     }
 
-    public Reservation(Long id, Long customerId, Long roomId, Date checkInDate, Date checkOutDate, double extendedPrice) {
-        this.id = id;
+    public Reservation(Long customerId, Date checkInDate, Date checkOutDate, double extendedPrice) {
         this.customerId = customerId;
-        this.roomId = roomId;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.extendedPrice = extendedPrice;
-        this.services = services;
     }
 
     public Long getId() {
