@@ -1,9 +1,9 @@
-package room;
+package entity.room;
 
-import reservation.Service;
-import room.enums.CommonFeature;
-import room.enums.Status;
-import room.enums.Type;
+import entity.reservation.Service;
+import entity.room.enums.CommonFeature;
+import entity.room.enums.Status;
+import entity.room.enums.Type;
 
 import java.util.ArrayList;
 import java.util.List;

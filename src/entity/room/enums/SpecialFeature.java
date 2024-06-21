@@ -1,4 +1,4 @@
-package room.enums;
+package entity.room.enums;
 
 public enum SpecialFeature {
     JACUZZI("JACUZZI", 300),

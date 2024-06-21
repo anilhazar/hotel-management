@@ -1,4 +1,4 @@
-package room.enums;
+package entity.room.enums;
 
 import java.util.List;
 

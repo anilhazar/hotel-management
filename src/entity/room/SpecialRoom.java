@@ -1,7 +1,7 @@
-package room;
+package entity.room;
 
-import room.enums.SpecialFeature;
-import room.enums.Type;
+import entity.room.enums.SpecialFeature;
+import entity.room.enums.Type;
 
 import java.util.List;
 

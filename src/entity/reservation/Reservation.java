@@ -1,4 +1,4 @@
-package reservation;
+package entity.reservation;
 
 import java.sql.Date;
 import java.util.List;
@@ -11,13 +11,6 @@ public class Reservation {
     private Date checkOutDate;
     private Double extendedPrice;
     private List<Service> services;
-
-    public Reservation(Long customerId, Long roomId, Date checkInDate, Date checkOutDate, double services) {
-        this.customerId = customerId;
-        this.roomId = roomId;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-    }
 
     public Reservation(Long customerId, Date checkInDate, Date checkOutDate, double extendedPrice) {
         this.customerId = customerId;

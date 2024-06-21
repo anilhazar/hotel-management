@@ -1,4 +1,4 @@
-package reservation;
+package entity.reservation;
 
 public enum Service {
 

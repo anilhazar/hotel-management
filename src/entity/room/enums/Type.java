@@ -1,4 +1,4 @@
-package room.enums;
+package entity.room.enums;
 
 public enum Type {
     NORMAL("room"),

@@ -1,8 +1,8 @@
-package customer;
-import common.User;
+package entity.customer;
+import common.Person;
 import common.Role;
 
-public class Customer extends User {
+public class Customer extends Person {
 
 
     public Customer(String name, String email, int age, Role role) {
