@@ -10,6 +10,9 @@ public class Invoice {
         this.totalPrice = totalPrice;
     }
 
+    public Invoice(Long id, Long reservationId, Double totalPrice) {
+    }
+
     public Long getId() {
         return id;
     }

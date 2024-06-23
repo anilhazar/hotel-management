@@ -1,5 +1,7 @@
 package entity.reservation;
 
+import entity.room.Room;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -58,4 +60,5 @@ public class Reservation {
     public List<Service> getServices() { return services; }
 
     public void setServices(List<Service> services) { this.services = services; }
+
 }
