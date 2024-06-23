@@ -1,7 +1,7 @@
 package repository;
 
 
-import room.Room;
+import entity.room.Room;
 import java.util.List;
 import java.util.Optional;
 

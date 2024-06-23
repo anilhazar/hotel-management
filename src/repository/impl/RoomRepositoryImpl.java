@@ -1,16 +1,16 @@
-package repository.Impl;
+package repository.impl;
 
 import database.ConnectionManager;
 import repository.RoomRepository;
-import room.Room;
-import room.enums.Status;
-import room.enums.Type;
+import entity.room.Room;
+import entity.room.enums.Status;
+import entity.room.enums.Type;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class RoomRepositoryImpl implements RoomRepository {
+class RoomRepositoryImpl implements RoomRepository {
 
     @Override
     public void save(Room room) {
