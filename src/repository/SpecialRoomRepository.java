@@ -1,6 +1,6 @@
 package repository;
 
-import room.SpecialRoom;
+import entity.room.SpecialRoom;
 
 import java.util.List;
 import java.util.Optional;
