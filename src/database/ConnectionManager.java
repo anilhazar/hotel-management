@@ -23,7 +23,7 @@ public class ConnectionManager {
                 final String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DBNAME;
                 connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
             } catch (SQLException e) {
-                System.err.println("Error connecting to the database: " + e.getMessage());
+                e.printStackTrace();
                 throw e;
             }
         }
