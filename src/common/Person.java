@@ -7,7 +7,7 @@ public abstract class Person {
     protected int age;
     protected Role role;
 
-    public Person(String name, String email, int age, Role role) {
+    protected Person(String name, String email, int age, Role role) {
         this.name = name;
         this.email = email;
         this.age = age;
@@ -34,23 +34,14 @@ public abstract class Person {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public Role getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+
 }
