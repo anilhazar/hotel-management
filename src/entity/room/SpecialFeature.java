@@ -1,10 +1,11 @@
-package entity.reservation;
+package entity.room;
 
-public class Service {
+
+public class SpecialFeature {
     private String name;
-    private double price;
+    private int price;
 
-    public Service(String name, double price) {
+    public SpecialFeature(String name, int price) {
         this.name = name;
         this.price = price;
     }
@@ -13,7 +14,7 @@ public class Service {
         return name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
