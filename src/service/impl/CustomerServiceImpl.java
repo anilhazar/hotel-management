@@ -3,21 +3,26 @@ package service.impl;
 import entity.reservation.Reservation;
 import entity.reservation.Service;
 import entity.room.Room;
+import entity.room.SpecialFeature;
 import entity.room.SpecialRoom;
-import entity.room.enums.SpecialFeature;
 import repository.ReservationRepository;
 import repository.RoomRepository;
+import repository.impl.ReservationRepositoryImpl;
+import repository.impl.RoomRepositoryImpl;
 import service.CustomerService;
+import service.ManagerService;
 
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
+    private final ManagerService managerService;
 
-    public CustomerServiceImpl(ReservationRepository reservationRepository, RoomRepository roomRepository) {
-        this.reservationRepository = reservationRepository;
-        this.roomRepository = roomRepository;
+    public CustomerServiceImpl() {
+        this.reservationRepository = new ReservationRepositoryImpl();
+        this.roomRepository = new RoomRepositoryImpl();
+        this.managerService = new ManagerServiceImpl();
     }
 
     @Override
@@ -68,12 +73,21 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Override
+    public void requestService(Long reservationId, Service service) {
+        managerService.handleServiceRequest(reservationId, service);
+    }
+
     private double calculateExtendedPrice(Reservation reservation) {
         double basePrice = reservation.getExtendedPrice();
-        double additionalPrice = reservation.getServices().stream()
-                .mapToDouble(Service::getPrice)
-                .sum();
+        double additionalPrice = 0.0;
+
+        for (Service service : reservation.getServices()) {
+            additionalPrice += service.getPrice();
+        }
+
         return basePrice + additionalPrice;
     }
+
 }
 
