@@ -1,10 +1,11 @@
 package entity.owner;
 
-import common.Person;
-import common.Role;
+import entity.person.Person;
+import entity.person.Role;
 
 public class Owner extends Person {
-    public Owner(String name, String email, int age, Role role) {
-        super(name, email, age, role);
+    public Owner(String name, String password, String email, int age, Role role, byte[] salts) {
+        super(name, password, email, age, role, salts);
     }
+
 }
