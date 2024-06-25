@@ -1,16 +1,20 @@
 package repository.impl;
 
 import database.ConnectionManager;
-import repository.RoomRepository;
 import entity.room.Room;
 import entity.room.enums.Status;
 import entity.room.enums.Type;
+import repository.RoomRepository;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-class RoomRepositoryImpl implements RoomRepository {
+public class RoomRepositoryImpl implements RoomRepository {
+
+    public RoomRepositoryImpl() {
+    }
 
     @Override
     public void save(Room room) {
@@ -54,7 +58,6 @@ class RoomRepositoryImpl implements RoomRepository {
                 return Optional.of(new Room(
                         rs.getLong("id"),
                         rs.getInt("capacity"),
-                        rs.getInt("base_price"),
                         Status.valueOf(rs.getString("status")),
                         Type.valueOf(rs.getString("type"))
                 ));
@@ -76,7 +79,6 @@ class RoomRepositoryImpl implements RoomRepository {
                 rooms.add(new Room(
                         rs.getLong("id"),
                         rs.getInt("capacity"),
-                        rs.getInt("base_price"),
                         Status.valueOf(rs.getString("status")),
                         Type.valueOf(rs.getString("type"))
                 ));

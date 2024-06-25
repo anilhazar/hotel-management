@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-class InvoiceRepositoryImpl implements InvoiceRepository {
+public class InvoiceRepositoryImpl implements InvoiceRepository {
+
+    public InvoiceRepositoryImpl() {
+    }
 
     @Override
     public void save(Invoice invoice) {

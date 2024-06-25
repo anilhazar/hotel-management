@@ -1,8 +1,8 @@
 package repository.impl;
 
 import database.ConnectionManager;
-import repository.ReservationRepository;
 import entity.reservation.Reservation;
+import repository.ReservationRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 
-class ReservationRepositoryImpl implements ReservationRepository {
-
+public class ReservationRepositoryImpl implements ReservationRepository {
+    public ReservationRepositoryImpl() {
+    }
 
     @Override
     public void save(Reservation reservation)  {

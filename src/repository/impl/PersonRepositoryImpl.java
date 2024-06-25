@@ -13,8 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-class PersonRepositoryImpl implements PersonRepository {
+public class PersonRepositoryImpl implements PersonRepository {
 
+    public PersonRepositoryImpl() {
+    }
 
     @Override
     public void save(Person person) {
