@@ -7,6 +7,17 @@
 # BlueJ files
 *.ctxt
 
+# Ignore the entire .idea directory
+.idea/
+
+# Except for these specific files that should be shared
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/workspace.xml
+!.idea/runConfigurations/
+!.idea/codeStyles/
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
