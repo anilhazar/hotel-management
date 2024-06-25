@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS person
     id    BIGINT PRIMARY KEY AUTO_INCREMENT     NOT NULL,
     name  VARCHAR(25)                           NOT NULL,
     email VARCHAR(30)                           NOT NULL,
+    password  VARCHAR(30)                       NOT NULL,
     age   INT,
     role  ENUM ('CUSTOMER', 'MANAGER', 'OWNER') NOT NULL
 );
