@@ -8,11 +8,11 @@ public enum CommonFeature {
     TOWEL("TOWEL", 50),
     BED("BED", 200),
     SOFA("SOFA", 100),
+
     TABLE("TABLE", 100);
 
     private final String name;
     private final int price;
-
 
     CommonFeature(String name, int price) {
         this.name = name;
@@ -28,7 +28,6 @@ public enum CommonFeature {
         }
         return totalPrice;
     }
-
 
     public String getName() {
         return name;
