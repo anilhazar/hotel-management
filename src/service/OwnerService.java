@@ -1,8 +1,7 @@
 package service;
 
-import common.Person;
-import entity.customer.Customer;
 import entity.invoice.Invoice;
+import entity.person.Person;
 import entity.reservation.Reservation;
 
 import java.util.List;
