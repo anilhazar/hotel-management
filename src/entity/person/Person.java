@@ -1,4 +1,4 @@
-package entity;
+package entity.person;
 
 import entity.person.enums.Role;
 
