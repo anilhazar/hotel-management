@@ -1,7 +1,5 @@
 package entity.person;
 
-import entity.person.enums.Role;
-
 import java.util.Arrays;
 import java.util.Objects;
 

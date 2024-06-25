@@ -1,7 +1,5 @@
 package entity.reservation;
 
-import entity.room.Room;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -19,6 +17,12 @@ public class Reservation {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.extendedPrice = extendedPrice;
+    }
+
+    public Reservation(Long roomId, String checkInDate, String checkOutDate) {
+        this.roomId = roomId;
+        this.checkInDate = Date.valueOf(checkInDate);
+        this.checkOutDate = Date.valueOf(checkOutDate);
     }
 
     public Long getId() {

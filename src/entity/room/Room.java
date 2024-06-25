@@ -11,14 +11,14 @@ import java.util.List;
 public class Room {
     private Long id;
     private int capacity;
-    private int basePrice;
+    private final int basePrice;
     private Status status;
     private Type type;
     private List<Service> services;
     private final List<CommonFeature> commonFeatures = CommonFeature.COMMON_FEATURES;
 
 
-    public Room(int capacity, int basePrice, Type type) {
+    public Room(int capacity, Type type) {
         this.capacity = capacity;
         this.basePrice = CommonFeature.calculateTotalPrice(commonFeatures);
         status = Status.EMPTY;
@@ -27,12 +27,17 @@ public class Room {
 
     }
 
-    public Room(Long id, int capacity, int basePrice, Status status, Type type) {
+    public Room(Long id, int capacity, Status status, Type type) {
         this.id = id;
         this.capacity = capacity;
-        this.basePrice = basePrice;
+        this.basePrice = CommonFeature.calculateTotalPrice(commonFeatures);
         this.status = status;
         this.type = type;
+    }
+
+    public Room(int capacity) {
+        this.capacity = capacity;
+        this.basePrice = CommonFeature.calculateTotalPrice(commonFeatures);
     }
 
     public Long getId() {
@@ -51,10 +56,6 @@ public class Room {
 
     public int getBasePrice() {
         return basePrice;
-    }
-
-    public void setBasePrice(int basePrice) {
-        this.basePrice = basePrice;
     }
 
     public List<CommonFeature> getCommonFeatures() {
