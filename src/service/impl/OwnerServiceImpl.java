@@ -1,12 +1,14 @@
 package service.impl;
 
-import common.Person;
-import entity.customer.Customer;
 import entity.invoice.Invoice;
+import entity.person.Person;
 import entity.reservation.Reservation;
 import repository.InvoiceRepository;
 import repository.PersonRepository;
 import repository.ReservationRepository;
+import repository.impl.InvoiceRepositoryImpl;
+import repository.impl.PersonRepositoryImpl;
+import repository.impl.ReservationRepositoryImpl;
 import service.OwnerService;
 
 import java.util.List;
@@ -16,10 +18,10 @@ public class OwnerServiceImpl implements OwnerService {
     private final PersonRepository personRepository;
     private final InvoiceRepository invoiceRepository;
 
-    public OwnerServiceImpl(ReservationRepository reservationRepository, PersonRepository personRepository, InvoiceRepository invoiceRepository) {
-        this.reservationRepository = reservationRepository;
-        this.personRepository = personRepository;
-        this.invoiceRepository = invoiceRepository;
+    public OwnerServiceImpl() {
+        this.reservationRepository = new ReservationRepositoryImpl();
+        this.personRepository = new PersonRepositoryImpl();
+        this.invoiceRepository = new InvoiceRepositoryImpl();
     }
 
     @Override
@@ -42,11 +44,13 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public List<Person> listAllCustomers() {
-        try {
-            return personRepository.findAll();
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to list all customers", e);
+
+        List<Person> customers = personRepository.findAll();
+
+        if (customers == null) {
+            throw new RuntimeException("No customer found");
         }
+        return customers;
     }
 
 

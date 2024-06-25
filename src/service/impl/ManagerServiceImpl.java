@@ -4,15 +4,19 @@ import entity.invoice.Invoice;
 import entity.reservation.Reservation;
 import entity.reservation.Service;
 import entity.room.Room;
+import entity.room.SpecialFeature;
 import entity.room.SpecialRoom;
-import entity.room.enums.SpecialFeature;
 import repository.InvoiceRepository;
 import repository.ReservationRepository;
 import repository.RoomRepository;
+import repository.SpecialRoomRepository;
+import repository.impl.InvoiceRepositoryImpl;
+import repository.impl.ReservationRepositoryImpl;
+import repository.impl.RoomRepositoryImpl;
+import repository.impl.SpecialRoomRepositoryImpl;
 import service.ManagerService;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ManagerServiceImpl implements ManagerService {
     private final RoomRepository roomRepository;
@@ -39,11 +43,8 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public Room findRoomById(Long roomId) {
-        try {
-            return roomRepository.findById(roomId).orElseThrow(() -> new RuntimeException("Failed to find Room"));
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to find room", e);
-        }
+        return roomRepository.findById(roomId).orElseThrow(() -> new RuntimeException("No room found"));
+
     }
 
     @Override
@@ -115,11 +116,12 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public List<Reservation> findAllReservations() {
-        try {
-            return reservationRepository.findAll();
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to find all reservations", e);
+        List<Reservation> reservations = reservationRepository.findAll();
+        if (reservations == null) {
+            throw new RuntimeException("No reservations found");
         }
+        return reservations;
+
     }
 
     @Override
@@ -195,20 +197,17 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public Optional<Invoice> findInvoiceByReservationId(Long reservationId) {
-        try {
-            return invoiceRepository.findByReservationId(reservationId);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to find invoice", e);
-        }
+    public Invoice findInvoiceByReservationId(Long reservationId) {
+        return invoiceRepository.findByReservationId(reservationId).orElseThrow(() -> new RuntimeException("No Invoice found related to " + reservationId));
     }
 
     @Override
     public List<Invoice> findAllInvoices() {
-        try {
-            return invoiceRepository.findAll();
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to find all invoices", e);
+        List<Invoice> invoices = invoiceRepository.findAll();
+        if (invoices == null) {
+            throw new RuntimeException("No rooms found");
         }
+        return invoices;
+
     }
 }
