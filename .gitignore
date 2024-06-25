@@ -7,17 +7,6 @@
 # BlueJ files
 *.ctxt
 
-# Ignore the entire .idea directory
-.idea/
-
-# Except for these specific files that should be shared
-!.idea/misc.xml
-!.idea/modules.xml
-!.idea/vcs.xml
-!.idea/workspace.xml
-!.idea/runConfigurations/
-!.idea/codeStyles/
-
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -33,3 +22,51 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# IntelliJ IDEA specific files and directories
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Ignoring specific directories and files within .idea
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Do not ignore specific .idea files that should be shared
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/runConfigurations/
+!.idea/codeStyles/
+
+# Ignore build output directories
+out/
+target/
+build/
+
+# Ignore Maven and Gradle wrapper files
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+.gradle/
+!/.gradle/wrapper/gradle-wrapper.jar
+
+# Ignore Eclipse specific files
+.project
+.classpath
+.csettings
+.settings/
+
+# Ignore NetBeans specific files
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Ignore VS Code specific files
+.vscode/
