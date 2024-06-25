@@ -1,11 +1,10 @@
 package repository.impl;
 
 import database.ConnectionManager;
-import entity.invoice.Invoice;
-import repository.SpecialRoomRepository;
+import entity.room.SpecialFeature;
 import entity.room.SpecialRoom;
-import entity.room.enums.SpecialFeature;
 import entity.room.enums.Type;
+import repository.SpecialRoomRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +12,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-class SpecialRoomRepositoryImpl implements SpecialRoomRepository {
+public class SpecialRoomRepositoryImpl implements SpecialRoomRepository {
+
+    public SpecialRoomRepositoryImpl() {
+    }
 
     @Override
     public void save(SpecialRoom specialRoom) {
@@ -92,7 +94,7 @@ class SpecialRoomRepositoryImpl implements SpecialRoomRepository {
             featureStmt.setLong(1, roomId);
             ResultSet featureRs = featureStmt.executeQuery();
             while (featureRs.next()) {
-                specialFeatures.add(SpecialFeature.valueOf(featureRs.getString("feature_name")));
+                specialFeatures.add(new SpecialFeature(featureRs.getString("feature_name"), featureRs.getInt("feature_price")));
             }
         }
         return specialFeatures;
@@ -119,7 +121,7 @@ class SpecialRoomRepositoryImpl implements SpecialRoomRepository {
                             specialRooms.add(currentRoom);
                             return currentRoom;
                         });
-                specialRoom.addSpecialFeatureByName(rs.getString("feature_name"));
+                specialRoom.addSpecialFeature(rs.getString("feature_name"), rs.getInt("feature_price"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,7 +135,6 @@ class SpecialRoomRepositoryImpl implements SpecialRoomRepository {
             return new SpecialRoom(
                     rs.getLong("id"),
                     rs.getInt("capacity"),
-                    rs.getInt("base_price"),
                     Type.SPECIAL
             );
         } catch (SQLException e) {

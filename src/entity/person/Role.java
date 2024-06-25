@@ -1,4 +1,4 @@
-package common;
+package entity.person;
 
 public enum Role {
     CUSTOMER,
