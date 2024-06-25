@@ -18,11 +18,13 @@ public class ManagerServiceImpl implements ManagerService {
     private final RoomRepository roomRepository;
     private final ReservationRepository reservationRepository;
     private final InvoiceRepository invoiceRepository;
+    private final SpecialRoomRepository specialRoomRepository;
 
-    public ManagerServiceImpl(RoomRepository roomRepository, ReservationRepository reservationRepository, InvoiceRepository invoiceRepository) {
-        this.roomRepository = roomRepository;
-        this.reservationRepository = reservationRepository;
-        this.invoiceRepository = invoiceRepository;
+    public ManagerServiceImpl() {
+        this.roomRepository = new RoomRepositoryImpl();
+        this.reservationRepository = new ReservationRepositoryImpl();
+        this.invoiceRepository = new InvoiceRepositoryImpl();
+        this.specialRoomRepository = new SpecialRoomRepositoryImpl();
     }
 
     @Override
@@ -58,6 +60,40 @@ public class ManagerServiceImpl implements ManagerService {
         if (room == null) throw new IllegalArgumentException("Room cannot be null");
 
         roomRepository.update(room);
+    }
+
+    @Override
+    public void createSpecialRoom(SpecialRoom specialRoom) {
+        if (specialRoom == null) throw new IllegalArgumentException("Special Room cannot be null");
+        try {
+            specialRoomRepository.save(specialRoom);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create special room", e);
+        }
+    }
+
+    @Override
+    public SpecialRoom findSpecialRoomById(Long specialRoomId) {
+        return specialRoomRepository.findById(specialRoomId).orElseThrow(() -> new RuntimeException("Failed to find Special Room"));
+
+    }
+
+    @Override
+    public List<SpecialRoom> findAllSpecialRooms() {
+
+        List<SpecialRoom> specialRooms = specialRoomRepository.findAll();
+        if (specialRooms == null) {
+            throw new RuntimeException("No rooms found");
+        }
+        return specialRooms;
+
+    }
+
+    @Override
+    public void updateSpecialRoom(SpecialRoom specialRoom) {
+        if (specialRoom == null) throw new IllegalArgumentException("Special Room cannot be null");
+
+        specialRoomRepository.update(specialRoom);
     }
 
     @Override
@@ -97,6 +133,22 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
+    public void handleServiceRequest(Long reservationId, Service service) {
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new RuntimeException("Reservation not found"));
+
+        List<Service> services = reservation.getServices();
+
+        if (services.size() >= 3) {
+            System.out.println("Cannot add service. The room already has 3 or more services.");
+        } else {
+            services.add(service);
+            reservationRepository.update(reservation);
+            System.out.println("Service added successfully.");
+        }
+    }
+
+    @Override
     public Double calculateTotalPrice(Long reservationId) {
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new RuntimeException("Reservation not found"));
@@ -108,15 +160,19 @@ public class ManagerServiceImpl implements ManagerService {
         Room room = roomRepository.findById(reservation.getRoomId())
                 .orElseThrow(() -> new RuntimeException("Room not found"));
 
-        double roomPrice = room.getBasePrice();
-        double servicePrice = reservation.getServices().stream()
-                .mapToDouble(Service::getPrice)
-                .sum();
 
-        if (room instanceof SpecialRoom specialRoom) {
-            double specialFeaturePrice = specialRoom.getSpecialFeatures().stream()
-                    .mapToDouble(SpecialFeature::getPrice)
-                    .sum();
+        double roomPrice = room.getBasePrice();
+        double servicePrice = 0.0;
+        for (Service service : reservation.getServices()) {
+            servicePrice += service.getPrice();
+        }
+
+        if (room instanceof SpecialRoom) {
+            SpecialRoom specialRoom = (SpecialRoom) room;
+            double specialFeaturePrice = 0.0;
+            for (SpecialFeature feature : specialRoom.getSpecialFeatures()) {
+                specialFeaturePrice += feature.getPrice();
+            }
             return roomPrice + servicePrice + specialFeaturePrice;
         }
 
